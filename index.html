@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SqueezUI</title>
+	<script type="text/javascript" src="/html/ext/adapter/ext/ext-base.js?r=[% revision %]"></script>
+	<script type="text/javascript" src="/html/ext/ext-all.js?r=[% revision %]"></script>
+	<script type="text/javascript">[% PROCESS html/vars.js %]</script>
+	<script type="text/javascript" src="/html/SqueezeJS/Base.js?r=[% revision %]"></script>
+	<script type="text/javascript">[% PROCESS html/SqueezeJS/Strings.js %]</script>
+	<script type="text/javascript" src="/html/SqueezeJS/UI.js?r=[% revision %]"></script>
+
+    <!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="/html/ext/resources/css/ext-all.css?r=[% revision %]" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  	  <![endif]-->
+		<style>
+			#cover {
+				margin-top: 25px;
+				text-align: center;
+			}
+			#info {
+				width: 100%;
+				margin-top: 25px;
+				text-align: center;
+				font-family: sans-serif;
+			}
+		</style>
+
+  </head>
+  	<body>
+	<ul class="nav nav-pills">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="http://holysheetballs.tumblr.com">HolySheetBalls</a></li>
+		<li><a href="#">Messages</a></li>
+	</ul>
+		
+	<h1><div class="lightHue">Logitech Media Server</div></h1>
+	<div class="containerMain" id="cover">
+		<div id="info">
+				<span id="playerChooser"></span>
+				<span id="title"></span>
+				<span id="back"></span><span id="next"></span>
+		</div>
+	</div>
+	<footer>BrianShano</footer>
+		<script type="text/javascript">
+			Ext.onReady(function(){
+				SqueezeJS.Controller.init({
+					player: playerid
+				});
+
+				var maxHeight = Math.min(Ext.lib.Dom.getViewWidth(), Ext.lib.Dom.getViewHeight()) - 100; 
+				new SqueezeJS.UI.Coverart({
+					el: 'cover',
+					noLink: true,
+					size: maxHeight
+				});
+				Ext.get('cover').setHeight(maxHeight);
+
+				new SqueezeJS.UI.Buttons.PlayerDropdown({
+					renderTo: 'playerChooser'
+				});
+
+				new SqueezeJS.UI.CompoundTitle({
+					el: 'title',
+					noLink: true
+				});
+
+				new SqueezeJS.UI.Buttons.Rew({
+					renderTo: 'back'
+				});
+				new SqueezeJS.UI.Buttons.Fwd({
+					renderTo: 'next'
+				});
+			});
+		</script>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	</body>
+</html>
